@@ -12,17 +12,22 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-info fs-5">
+    <nav class="navbar navbar-expand-lg bg-dark fs-5">
         <div class="container">
-            <a class="navbar-brand fw-semibold fs-4" href="#">List Peminjaman</a>
+            <a class="navbar-brand fw-semibold fs-4 text-light" href="#">List Peminjaman</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    @auth
                     <li class="nav-item">
-                        <a class="nav-link btn btn-dark text-center text-light" aria-current="page" href="/">Back</a>
+                        <a class="nav-link btn btn-danger text-center text-light" aria-current="page" href="{{ route('logout') }}">Logout</a>
+                    </li>
+                    @endauth
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-secondary text-center text-light" aria-current="page" href="/">Back</a>
                     </li>
                 </ul>
             </div>
@@ -41,10 +46,10 @@
                             <th>Rayon</th>
                             <th>No Laptop</th>
                             <th>Ruangan</th>
-                
+                            @auth
                             <th>Action</th>
                             <th>Validator</th>
-                       
+                            @endauth                       
                         </tr>
                     </thead>
                     <?php $i = 1;?>
@@ -58,7 +63,7 @@
                             <td>{{$dt->rayon}}</td>
                             <td>{{$dt->no_laptop}}</td>
                             <td>{{$dt->ruangan}}</td>
-                           
+                            @auth
                             <td>
                                 <?php if($dt->status == 0 ){ ?>
                                 <div class="row">
@@ -75,7 +80,7 @@
                             @else 
                                 <td>-</td>
                             @endif
-                           
+                            @endauth
                         </tr>
                     </tbody>
                     @endforeach

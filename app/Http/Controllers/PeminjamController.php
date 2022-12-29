@@ -4,31 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
+use App\Models\AsalSekolah;
 use Illuminate\Support\Facades\Auth;
 
 
 class PeminjamController extends Controller
 {
-    public function index(){
+
+    public function index() {
         return view('index');
     }
+    
+    
 
-    public function create(){
-        $data = Peminjaman::all();
-        //dd($data);
-        return view('peminjam.create',compact('data'));
-    }
-
-    public function indexPeminjaman(){
-
-        
-       
-        $data = Peminjaman::all();
-
-        return view('peminjam.list', compact('data'));
-    }
-
-    public function storePeminjaman(Request $request){
+    public function storeDaftar(Request $request){
         $request->validate([
             'nisn' => 'required|min:8|max:8|unique:peminjaman,nisn',
             'nama' => 'required',
@@ -47,9 +36,9 @@ class PeminjamController extends Controller
             'no_laptop' => $request->no_laptop,
             'ruangan' => $request->ruangan
 
-        ]);
+        ])    ;
 
-        return redirect('/create')->with('success','Peminjaman Berhasil Dilakukan!');
+        return redirect()->intended('list-peminjaman')->with('success','Peminjaman Berhasil Dilakukan!');
     }
 
     

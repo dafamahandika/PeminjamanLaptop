@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DataLaptop extends Model
+class Bank extends Model
 {
     use HasFactory;
-    protected $table ='data_laptop';
-    protected $fillable =['no_laptop'];
+    protected $table = 'banks';
+    protected $fillable = ['nama_bank',];
+
 }

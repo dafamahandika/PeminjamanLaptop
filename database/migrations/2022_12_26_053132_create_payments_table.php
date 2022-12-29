@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asal_sekolah', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_sekolah');
+            // $table->unsignedBigInteger("student_id")->unique();
+            $table->string('pemilik_rekening'); 
+            $table->integer('nominal');
+            $table->string('nama_bank');
+            $table->string('bukti_payment');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asal_sekolah');
+        Schema::dropIfExists('payments');
     }
 };

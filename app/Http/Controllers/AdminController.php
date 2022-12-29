@@ -4,26 +4,52 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Student;
 use App\Models\Peminjaman;
-use App\Models\DataLaptop;
+use App\Models\AsalSekolah;
 use App\Models\User;
+use App\Models\Bank;
 
 
 
 class AdminController extends Controller
 {
-    public function indexPeminjaman(){
+    public function indexStudent(){
        
-        $data = Peminjaman::all();
+        $data = Student::all();
 
-        return view('admin.data-peminjaman', compact('data'));
+        return view('admin.data-student', compact('data'));
     }
 
-    public function indexDataLaptop(){
+    public function indexDataSekolah(){
        
-        $data = DataLaptop::all();
+        $data = AsalSekolah::all();
 
-        return view('admin.data-laptop', compact('data'));
+        return view('admin.data-sekolah', compact('data'));
+    }
+
+    public function indexDataBank(){
+       
+        $data = Bank::all();
+
+        return view('admin.data-bank', compact('data'));
+    }
+
+    public function createDataBank() {
+        return view('admin.create-data-bank');
+    }
+
+    public function storeDataBank(Request $request) {
+        Bank::create([
+            'nama_bank' =>$request->nama_bank,
+        ]);
+
+        return redirect(route('indexBank'));
+    }
+    
+    public function deleteDataBank($id){
+        Bank::where('id', $id)->Delete();
+        return redirect(route('indexBank'));
     }
 
     public function indexDataLaboran(){
@@ -32,7 +58,6 @@ class AdminController extends Controller
 
         return view('admin.data-laboran', compact('data'));
     }
-
     public function createDataLaboran(){
         return view('admin.create-account-laboran');
     }
@@ -71,23 +96,24 @@ class AdminController extends Controller
         User::where('id', $id)->Delete();
         return redirect(route('account'));
     }
+    
 
-    public function createDataLaptop(){
-        return view('admin.create-data-laptop');
+    public function createDataSekolah(){
+        return view('admin.create-data-sekolah');
     }
 
-    public function storeDataLaptop(Request $request){
+    public function storeDataSekolah(Request $request){
 
-        DataLaptop::create([
-            'no_laptop' => $request->no_laptop
+        AsalSekolah::create([
+            'nama_sekolah' => $request->nama_sekolah
            
         ]);
-        return redirect(route('dataLaptop'));   
+        return redirect(route('dataSekolah'));   
     }
 
-    public function deleteLaptopData($id){
-        DataLaptop::where('id', $id)->Delete();
-        return redirect(route('dataLaptop'));
+    public function deleteDataSekolah($id){
+        AsalSekolah::where('id', $id)->Delete();
+        return redirect(route('dataSekolah'));
     }
 
 }

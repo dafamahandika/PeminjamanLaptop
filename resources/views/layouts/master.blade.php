@@ -8,11 +8,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+    
     gtag('config', 'G-00R8F6D0PD');
-  </script>
-  <title>Dashboard Admin</title>
-
+    </script>
+  <title>@yield('title')</title>
+  <link rel="shortcut icon" href="images/logo-wk.png" type="img/x-icon" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -31,7 +32,7 @@
   <link rel="stylesheet" href="../../../assets/admin/css/progres.css">
   <link rel="stylesheet" href="../../../assets/admin/css/card.css">
 
-  <link href="" rel='shortcut icon'>
+  <!-- <link href="" rel='shortcut icon'> -->
 
 </head>
 
@@ -49,9 +50,9 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="../../../assets/admin/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi {{ auth()->user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="" class="dropdown-item has-icon text-danger">
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -61,20 +62,37 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="#">PPLG</a>
+            <a href="#">PPDB 2022 - 2023</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="menu-header">Dashboard</li>
+              <li class="menu-header">Menu</li>
+              @if (auth()->user()->is_admin == 1)
               <li class="nav-item dropdown">
-                <a href="{{route('peminjaman')}}"><i class="fas fa-home"></i><span>Dashboard</span></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a href="{{route('dataLaptop')}}"><i class="fas fa-money-bill"></i> <span>Data Laptop</span></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a href="{{route('account')}}"><i class="fas fa-book-open"></i> <span>Data Account Laboran</span></a>
+                <a href="{{route('student')}}"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
               </li>
               
+              <li class="nav-item dropdown">
+                <a href="{{route('dataSekolah')}}"><i class="fa-solid fa-school"></i><span>Data Asal Sekolah</span></a>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a href="{{route('indexBank')}}"><i class="fa-solid fa-building-columns"></i><span>Data Bank</span></a>
+              </li>
+        
+              <li class="nav-item dropdown">
+                <a href="{{route('account')}}"><i class="fa-solid fa-users"></i><span>Data Account Laboran</span></a>
+              </li>
+              @endif
+
+              @if (auth()->user()->is_admin !== 1)
+              <li class="nav-item dropdown">
+                <a href="{{ route('indexStudent') }}"><i class="fa-solid fa-user"></i><span>Dasboard</span></a>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a href="{{ route('payment') }}"><i class="fa-solid fa-money-bill"></i><span>Pemabayaran</span></a>
+              </li>
+              @endif  
             </ul>
         </aside>
       </div>
@@ -93,7 +111,7 @@
       </footer>
     </div>
   </div>
-
+  <script src="https://kit.fontawesome.com/2779d159af.js" crossorigin="anonymous"></script>
   <!-- General JS Scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

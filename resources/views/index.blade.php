@@ -3,11 +3,12 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Peminjaman Laptop dan Barang PPLG</title>
+	<title>PPDB SMK Wikrama Bogor</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="freehtml5.co" />
+	<link rel="shortcut icon" href="images/logo-wk.png" type="img/x-icon" />
 
 	<!-- 
 	//////////////////////////////////////////////////////
@@ -66,13 +67,13 @@
 		<div class="top-menu">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="index.html">PPLG<span>.</span></a></div>
+					<div class="col-md-2">
+						<div id="fh5co-logo"><a href="">Hello</a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="portfolio.html">Portfolio</a></li>
+							<!-- <li class="active"><a href="index.html">Home</a></li> -->
+							<!-- <li><a href="portfolio.html">Portfolio</a></li>
 							<li class="has-dropdown">
 								<a href="blog.html">Blog</a>
 								<ul class="dropdown">
@@ -83,8 +84,14 @@
 								</ul>
 							</li>
 							<li><a href="about.html">About</a></li>
-							<li><a href="contact.html">Contact</a></li>
-							<li class="btn-cta"><a href="#"><span>Login</span></a></li>
+							<li><a href="contact.html">Contact</a></li> -->
+							<!-- @auth
+							<li class="btn-cta"><a href="{{ route('logout') }}"><span>Logout</span></a></li>
+							@endauth -->
+							
+							<!-- @if(!Auth::user()) -->
+							<li class="btn-cta"><a href="{{ route('login') }}"><span>Login</span></a></li>
+							<!-- @endif -->
 						</ul>
 					</div>
 				</div>
@@ -100,10 +107,9 @@
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t js-fullheight">
 						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-							<h1>Web Peminjaman Laptop &amp; Barang PPLG </h1>
-							<h2 style="color:#ffffff;">Pengembangan Perangkat Lunak dan Gim </h2>
-							<p><a class="btn btn-primary btn-lg btn-demo" href="{{route('create')}}"></i>Pinjam</a> 
-							<a class="btn btn-primary btn-lg btn-learn" href="{{ route('indexPeminjaman') }}">Lihat Peminjaman</a></p>
+							<h1>Penerimaan Peserta Didik Baru SMK Wikrama Bogor</h1>
+							<h2 style="color:#ffffff;">"Bagimu Negeri Kami Berjanji Lulus Wikrama Siap Membangun Negeri"</h2>
+							<a class="btn btn-primary btn-lg btn-learn" href="{{route('createStudent')}}">Pendaftaran PPDB</a></p>
 						</div>
 					</div>
 				</div>

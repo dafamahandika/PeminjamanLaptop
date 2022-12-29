@@ -3,6 +3,9 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeminjamController;
+use App\Http\Controllers\LaboranController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,29 +22,48 @@ use App\Http\Controllers\PeminjamController;
 //     return view('welcome');
 // });
 
-//peminjam
-Route::get('/',[PeminjamController::class , 'index']);
-Route::get('/create',[PeminjamController::class , 'create'])->name('create');
-Route::get('/list-peminjaman',[PeminjamController::class , 'indexPeminjaman'])->name('indexPeminjaman');
-Route::post('/store-peminjaman',[PeminjamController::class, 'storePeminjaman'])->name('storePeminjaman');
 
+//peminjam
+Route::get('/',[StudentController::class , 'indexLanding']);
+Route::get('/daftar',[StudentController::class , 'createStudent'])->name('createStudent');
+Route::post('/daftar',[StudentController::class, 'storeDaftar'])->name('storeDaftar');
+Route::get('print-pdf', [StudentController::class, 'printPdf'])->name('printPdf');
+
+
+//login
+Route::get('/login',[AuthController::class, 'indexLogin'])->name('login');
+Route::post('/login',[AuthController::class, 'auth'])->name('auth');
+Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 
 
 //laboran
-Route::post('/approve-peminjaman',[PeminjamController::class, 'approve'])->name('approve');
+
+Route::post('/approve-peminjaman',[LaboranController::class, 'approvePeminjaman'])->name('approve')->middleware('auth');
 
 
-//admin indexDataLaboran storeDataLaboran deleteLaboranData createDataLaptop
-Route::get('/index',[AdminController::class, 'indexPeminjaman'])->name('peminjaman');
-Route::get('/indexDataLaptop',[AdminController::class, 'indexDataLaptop'])->name('dataLaptop');
-Route::get('/indexDataLaboran',[AdminController::class, 'indexDataLaboran'])->name('account');
-Route::get('/create-account-laboran',[AdminController::class, 'createDataLaboran'])->name('createAccount');
-Route::post('/store-account-laboran',[AdminController::class, 'storeDataLaboran'])->name('storeDataLaboran');
+//admin indexDataLaboran storeDataLaboran deleteLaboranData
+// Route::middleware(['isAdmin', 'auth:user,student'])->group(function() {
+     Route::get('/dashboard',[AdminController::class, 'indexStudent'])->name('student');
+     Route::get('/data-sekolah',[AdminController::class, 'indexDataSekolah'])->name('dataSekolah');
+     Route::get('/indexDataLaboran',[AdminController::class, 'indexDataLaboran'])->name('account');
+     Route::get('/create-account-laboran',[AdminController::class, 'createDataLaboran'])->name('createAccount');
+     Route::post('/store-account-laboran',[AdminController::class, 'storeDataLaboran'])->name('storeDataLaboran');
+     
+     Route::get('/edit-laboran/{id}',[AdminController::class, 'editLaboranData'])->name('editLaboran');
+     Route::post('/update-laboran/{id}',[AdminController::class, 'updateLaboranData'])->name('updateLaboranData');
+     Route::get('/delete-laboran/{id}',[AdminController::class, 'deleteLaboranData'])->name('deleteLaboranData');
+     
+     Route::get('/create-data-sekolah',[AdminController::class, 'createDataSekolah'])->name('createDataSekolah');
+     Route::post('/store-data-sekolah',[AdminController::class, 'storeDataSekolah'])->name('storeDataSekolah');
+     Route::get('/delete-sekolah/{id}',[AdminController::class, 'deleteDataSekolah'])->name('deleteDataSekolah');
 
-Route::get('/edit-laboran/{id}',[AdminController::class, 'editLaboranData'])->name('editLaboran');
-Route::post('/update-laboran/{id}',[AdminController::class, 'updateLaboranData'])->name('updateLaboranData');
-Route::get('/delete-laboran/{id}',[AdminController::class, 'deleteLaboranData'])->name('deleteLaboranData');
+     Route::get('/bank', [AdminController::class, 'indexDataBank'])->name('indexBank');
+     Route::get('/create-bank', [AdminController::class, 'createDataBank'])->name('createDataBank');
+     Route::post('/create-bank', [AdminController::class, 'storeDataBank'])->name('storeDataBank');
+     Route::get('/delete-bank/{id}', [AdminController::class, 'deleteDataBank'])->name('deleteDataBank');
+// });
 
-Route::get('/create-data-laptop',[AdminController::class, 'createDataLaptop'])->name('createDataLaptop');
-Route::post('/store-data-laptop',[AdminController::class, 'storeDataLaptop'])->name('storeDataLaptop');
-Route::get('/delete-laptop/{id}',[AdminController::class, 'deleteLaptopData'])->name('deleteLaptopData');
+//student
+Route::get('/dashboard/student', [StudentController::class, 'indexStudent'])->name('indexStudent');
+Route::get('/dashboard/student/payment', [StudentController::class, 'createPayment'])->name('payment');
+Route::post('/dashboard/student/payment', [StudentController::class, 'storePayment'])->name('storePayment');

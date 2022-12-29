@@ -1,28 +1,32 @@
 @extends('layouts.master')
-@section('content')
 
+@section('title')
+
+Admin | Data Bank
+
+@endsection
+
+@section('content')
 
 <section class="section">
     <div class="section-header">
-        <h1>Data Peminjaman</h1>
+        <h1>Data Bank</h1>
         <div class="section-header-breadcrumb">
-            
+           
+            <div class="breadcrumb-item">Data Bank</div>
         </div>
     </div>
     <div class="section-body">
-        <h3 class="section-title">Daftar Peminjaman Laptop</h3>
+        <h3 class="section-title">Daftar Bank<a href="{{ route('createDataBank') }}" title="Tambah Data"
+                style="float: right; margin-right: 2%" class="btn btn-primary mr-1">Tambah Data</a></h3>
         <table id="data-admin" class="table table-striped table-bordered table-md"
             style="width: 100%; margin-top:5%; padding:2%;" cellspacing="1">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIS</th>
-                    <th>Nama</th>
-                    <th>Rombel</th>
-                    <th>Rayon</th>
-                    <th>No Laptop</th>
-                    <th>Ruangan</th>
-                    <th>Validator</th>
+                    <th>Nama Bank</th>
+                    <th>Action</th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -31,17 +35,11 @@
 
                 <tr>
                     <td>{{$i++}}</td>
-                    <td>{{$dt->nisn}}</td>
-                    <td>{{$dt->nama}}</td>
-                    <td>{{$dt->rombel}}</td>
-                    <td>{{$dt->rayon}}</td>
-                    <td>{{$dt->no_laptop}}</td>
-                    <td>{{$dt->ruangan}}</td>
-                    @if ($dt->validator)
-                    <td>{{$dt->validator}}</td>
-                    @else
-                    <td>-</td>
-                    @endif
+                    <td>{{$dt->nama_bank}}</td>
+                    <td>
+                    <a href="{{ route('deleteDataBank', ['id' => $dt->id]) }}" class="btn btn-danger mr-1">Hapus Data</i></a>
+                    </td>
+                    
                 </tr>
                 @endforeach
             </tbody>
