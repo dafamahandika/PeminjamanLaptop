@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table) {
-            $table->boolean('is_admin')->default(0)->after('password');
+        Schema::table('payment', function (Blueprint $table) {
+            $table->string('status')->nullable()->after('bukti_payment');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table) {
-            $table->dropColumn('is_admin');
+        Schema::table('payment', function (Blueprint $table) {
+            $table->string('status');
         });
     }
 };

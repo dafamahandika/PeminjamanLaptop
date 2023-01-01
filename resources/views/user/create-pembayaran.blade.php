@@ -18,6 +18,14 @@ PPDB SMK Wikrama Bogor
       <h2 class="section-title">Pembayaran</h2>
       <p class="section-lead">Silahkan upload bukti pembayaran anda di form berikut</p>
       <br>
+      @if ($message = Session::get('fail'))
+               <div class="alert alert-danger d-flex justify-content-center" width="15" height="10" role="alert">
+               <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="danger:"><use xlink:href="#check-circle-fill"/></svg>
+                    <div>
+                         {{$message}}
+                    </div>
+               </div>
+          @endif
       <form method="POST" action="{{ route('storePayment') }}" enctype="multipart/form-data">   
         @csrf
         <div class="row"> 
@@ -29,7 +37,15 @@ PPDB SMK Wikrama Bogor
                     <div class="card-body">
                         <div class="row align-items-start">
                             <div class="col-sm-12">
-                                <label>Nama Bank</label>
+                              <div class="form-group mt-3">
+                                <label for="nisn">NISN</label>
+                                <input type="text" name="nisn" class="form-control @error('nisn') is-invalid @enderror" placeholder="00687*****" />
+                                @error('nisn')
+                                  <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                              </div>
+                                
+                              <label>Nama Bank</label>
                                 <select name="nama_bank"  class="form-control @error('nama_bank') is-invalid @enderror"  required>
                                   <option hidden>Pilih Nama Bank</option> 
                                   @foreach( $data as $dt)

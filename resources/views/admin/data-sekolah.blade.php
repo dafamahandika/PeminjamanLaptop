@@ -18,7 +18,7 @@ Admin | Data Sekolah
     <div class="section-body">
         <h3 class="section-title">Daftar Asal Sekolah<a href="{{route('createDataSekolah')}}" title="Tambah Data"
                 style="float: right; margin-right: 2%" class="btn btn-primary mr-1">Tambah Data</a></h3>
-        <table id="data-admin" class="table table-striped table-bordered table-md"
+        <table id="data-admin" class="table table-striped table-bordered table-md text-center"
             style="width: 100%; margin-top:5%; padding:2%;" cellspacing="1">
             <thead>
                 <tr>

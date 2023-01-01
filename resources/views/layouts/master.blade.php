@@ -50,7 +50,7 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="../../../assets/admin/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi {{ auth()->user()->name }}</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -80,7 +80,7 @@
               </li>
         
               <li class="nav-item dropdown">
-                <a href="{{route('account')}}"><i class="fa-solid fa-users"></i><span>Data Account Laboran</span></a>
+                <a href="{{ route('payments') }}"><i class="fa-solid fa-users"></i><span>Data Payment</span></a>
               </li>
               @endif
 
@@ -90,7 +90,7 @@
               </li>
               
               <li class="nav-item dropdown">
-                <a href="{{ route('payment') }}"><i class="fa-solid fa-money-bill"></i><span>Pemabayaran</span></a>
+                <a href="{{ route('payment') }}"><i class="fa-solid fa-money-bill"></i><span>Pembayaran</span></a>
               </li>
               @endif  
             </ul>

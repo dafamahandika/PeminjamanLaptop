@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\AsalSekolah;
 use App\Models\Bank;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Auth; 
 use Hash;
 use Illuminate\Support\Str;
 // use Barryvdh\DomPDF\Facade\Pdf;
@@ -16,8 +17,9 @@ class StudentController extends Controller
 {
     public function indexStudent() {
         $user = User::all();
+        $student = Student::where('nisn', Auth::user()->password)->first();
 
-        return view('user.dashboard-user', compact('user'));
+        return view('user.dashboard-user', compact('user', 'student'));
     }
 
     public function indexLanding() {
@@ -66,9 +68,9 @@ class StudentController extends Controller
     }
 
     public function printPdf() {
-        $data = Student::all();
+        $data = Student::latest()->get()->first();
 
-        return view('user.pdf', compact('data'));
+        return view('user.pdf')->with('data', $data);
 
         // $pdf = Pdf::loadview('user.pdf',['data' => $data])->setpaper('A4', 'potrait');
         
@@ -82,34 +84,38 @@ class StudentController extends Controller
     }
 
     public function storePayment(Request $request) {
+        $student = Student::where('nama', auth()->user()->name)->get()->first();
         $request->validate([
+            'nisn' => 'required|numeric|unique:payment',
             'bukti_payment' => 'required|mimes:jpg,png,jpeg,|image|max:2048',
             'pemilik_rekening' => 'required',
             'nominal' => 'required|numeric',
             'nama_bank' => 'required',
         ]);
 
-        $bukti = $request->bukti_payment;
-        // $slug = Str::slug($bukti->getClientOriginalName());
-        $new_bukti = time() ;
-        $bukti->move('uploads/payments/'.   $new_bukti);
-
-
-        // Payment::create([
-        //     'pemilik_rekening' => $request->pemilik_rekening,
-        //     'nominal' => $request->nominal,
-        //     'nama_bank' => $request->nama_bank,
-        //     'bukti_payment' => $request->$new_bukti,
-        // ]);
-            
+        if ($request->hasFile('bukti_payment')) {
+            $bukti = $request->bukti_payment;
+            $name_bukti = time().'.'.$request->bukti_payment->extension();
+            $bukti->move(public_path('payments'), $name_bukti);
+        } else {
+            return back()->with('fail', 'Sertakan Bukti Pembayaran');
+        }
+        
         $payment = new Payment;
+        $payment->nisn= $request->nisn;
+        $payment->student_id = $student->id;
         $payment->pemilik_rekening = $request->pemilik_rekening;
         $payment->nominal = $request->nominal;
         $payment->nama_bank = $request->nama_bank;
-        $payment->bukti_payment = $new_bukti;
+        $payment->bukti_payment = $name_bukti;
         $payment->save();
+        
+        $student_nisn = $request->nisn;
+        Student::where('nisn', $student_nisn)->update([
+            'status' => 'Pending'
+        ]);
 
-
+        
 
         return redirect(route('indexStudent'))
         ->with('success', 'Pembayaran berhasil, harap tunggu pembayaran sedang di verifikasi');

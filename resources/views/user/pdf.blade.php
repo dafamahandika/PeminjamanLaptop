@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @foreach ($data as $dt)
-    <title>{{ $dt->nama }} - {{ $dt->nisn }}</title>
+    <title>{{ $data->nama }} - {{ $data->nisn }}</title>
 </head>
 <br>
 <body style="font-family: sans-serif" onload="window.print()">    
@@ -42,53 +41,53 @@
         <tr>
             <td width="30%" style="font-size: 13px"><b>TANGGAL DAFTAR</b></td>
             <td width="3%">:</td>
-            <td>{{ date('l, d F Y', $dt->creared_at) }}</td>
+            <td>{{ $data->created_at }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>NOMOR SELEKSI</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->id }}</td>
+            <td>{{ $data->id }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>NAMA LENGKAP</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->nama }}</td>
+            <td>{{ $data->nama }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>NISN</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->nisn }}</td>
+            <td>{{ $data->nisn }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>ASAL SEKOLAH</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->asal_sekolah }}</td>
+            <td>{{ $data->asal_sekolah }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>NO HP</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->no_phone }}</td>
+            <td>{{ $data->no_phone }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>EMAIL</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->email }}</td>
+            <td>{{ $data->email }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>NO HP Ayah</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->no_ayah }}</td>
+            <td>{{ $data->no_ayah }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>NO HP Ibu</b></td>
             <td width="3%">:</td>
-            <td>{{ $dt->no_ibu }}</td>
+            <td>{{ $data->no_ibu }}</td>
         </tr>
         <tr>
             <td width="30%" style="font-size: 13px"><b>Referensi</b></td>
             <td width="3%">:</td>
             <td>
-                {{ $dt->referensi }}
+                {{ $data->referensi }}
             </td>
         </tr>
         <tr>
@@ -104,20 +103,19 @@
             <td colspan="3"><b>A. Akun Anda</b></td>
         </tr>
         <tr>
-            <td colspan="3">Akses<a style="font: blue; text-decoration: none;" href="https://ppdb.smkwikrama.sch.id/student"> ppdb.smkwikrama.sch.id/student</a>, login gunakan</td>
+            <td colspan="3">Akses<a style="font: blue; text-decoration: none;" href="http://127.0.0.1:8000/login"> ppdb.smkwikrama.sch.id/student</a>, login gunakan</td>
         </tr>
         <tr>
-            <td colspan="3">Username : {{ $dt->email }}</td>
+            <td colspan="3">Username : {{ $data->email }}</td>
         </tr>
         <tr>
       
-            <td colspan="3">Password : {{ $dt->nisn }}</td>
+            <td colspan="3">Password : {{ $data->nisn }}</td>
         </tr>
         <tr>
             <td colspan="3">Akun ini digunakan untuk mengecek status pendaftaran pada SIM PPDB SMK Wikrama Bogor.</td>
         </tr>
     </table>
-    @endforeach
     <table width="37%" border="0">
         <tr>
             <td colspan="3" style="padding: 8px 0;"></td>

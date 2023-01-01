@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('payment', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger("student_id")->unique();
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('student');
+            $table->char('nisn')->unique();
             $table->string('pemilik_rekening'); 
             $table->integer('nominal');
             $table->string('nama_bank');

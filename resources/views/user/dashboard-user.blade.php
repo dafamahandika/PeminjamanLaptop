@@ -7,7 +7,7 @@ PPDB SMK Wikrama Bogor
 @section('content')
      <section class="section">
           <div class="section-header">
-               <h1>Dashboard {{ auth()->user()->name }}</h1>
+               <h1>Dashboard {{ Auth::user()->name }}</h1>
                <div class="section-header-breadcrumb">
                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                <div class="breadcrumb-item"><a href="#">Student</a></div>
@@ -15,7 +15,7 @@ PPDB SMK Wikrama Bogor
           </div>
 
           <div class="section-body">
-               <h2 class="section-title">Hi {{ auth()->user()->name }}</h2>
+               <h2 class="section-title">Hi {{ Auth::user()->name }}</h2>
                <p class="section-lead">Selamat Datang Di PPDB SMK Wikrama Bogor</p>
           </div>
 

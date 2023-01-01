@@ -44,14 +44,7 @@ Route::post('/approve-peminjaman',[LaboranController::class, 'approvePeminjaman'
 //admin indexDataLaboran storeDataLaboran deleteLaboranData
 // Route::middleware(['isAdmin', 'auth:user,student'])->group(function() {
      Route::get('/dashboard',[AdminController::class, 'indexStudent'])->name('student');
-     Route::get('/data-sekolah',[AdminController::class, 'indexDataSekolah'])->name('dataSekolah');
-     Route::get('/indexDataLaboran',[AdminController::class, 'indexDataLaboran'])->name('account');
-     Route::get('/create-account-laboran',[AdminController::class, 'createDataLaboran'])->name('createAccount');
-     Route::post('/store-account-laboran',[AdminController::class, 'storeDataLaboran'])->name('storeDataLaboran');
-     
-     Route::get('/edit-laboran/{id}',[AdminController::class, 'editLaboranData'])->name('editLaboran');
-     Route::post('/update-laboran/{id}',[AdminController::class, 'updateLaboranData'])->name('updateLaboranData');
-     Route::get('/delete-laboran/{id}',[AdminController::class, 'deleteLaboranData'])->name('deleteLaboranData');
+     Route::get('/data-sekolah',[AdminController::class, 'indexDataSekolah'])->name('dataSekolah');     
      
      Route::get('/create-data-sekolah',[AdminController::class, 'createDataSekolah'])->name('createDataSekolah');
      Route::post('/store-data-sekolah',[AdminController::class, 'storeDataSekolah'])->name('storeDataSekolah');
@@ -61,6 +54,11 @@ Route::post('/approve-peminjaman',[LaboranController::class, 'approvePeminjaman'
      Route::get('/create-bank', [AdminController::class, 'createDataBank'])->name('createDataBank');
      Route::post('/create-bank', [AdminController::class, 'storeDataBank'])->name('storeDataBank');
      Route::get('/delete-bank/{id}', [AdminController::class, 'deleteDataBank'])->name('deleteDataBank');
+     
+     Route::get('/dashboard/payments', [AdminController::class, 'indexPayment'])->name('payments');
+     Route::post('/dashboard/payments/{nisn}', [AdminController::class, 'validationPayment'])->name('validationPayment');
+     Route::get('/dashboard/payments/{nisn}', [AdminController::class, 'rejectPayment'])->name('rejectPayment');
+     Route::get('/dashboard/payments/{nisn}', [AdminController::class, 'showStudent'])->name('showStudent');
 // });
 
 //student
