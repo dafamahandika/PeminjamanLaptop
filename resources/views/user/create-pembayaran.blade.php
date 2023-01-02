@@ -25,7 +25,7 @@ PPDB SMK Wikrama Bogor
                          {{$message}}
                     </div>
                </div>
-          @endif
+      @endif
       <form method="POST" action="{{ route('storePayment') }}" enctype="multipart/form-data">   
         @csrf
         <div class="row"> 

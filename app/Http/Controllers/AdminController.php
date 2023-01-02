@@ -15,7 +15,7 @@ use App\Models\Payment;
 
 class AdminController extends Controller
 {
-    public function indexStudent(){
+    public function indexAdmin(){
        
         $data = Student::latest()->get();
 
@@ -53,24 +53,6 @@ class AdminController extends Controller
         return redirect(route('indexBank'));
     }
 
-    public function updateLaboranData(Request $request, $id){
-
-        User::where('id', $id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'is_admin' => 0,
-            'password' => Hash::make($request->password),
-           
-        ]);
-        return redirect(route('account'));
-    }
-
-    public function deleteLaboranData($id){
-        User::where('id', $id)->Delete();
-        return redirect(route('account'));
-    }
-    
-
     public function createDataSekolah(){
         return view('admin.create-data-sekolah');
     }
@@ -98,12 +80,12 @@ class AdminController extends Controller
         Student::where('nisn', $nisn)->update([
             'status' => 'Validasi',
             'validator' => "Admin", 
-        ]);
+        ]); 
         Payment::where('nisn', $nisn)->update([
             'status' => 'validasi',
         ]);
 
-        return redirect(route('student'));
+        return redirect()->route('indexAdmin');
     }
     
     public function rejectPayment($nisn) {
@@ -116,7 +98,7 @@ class AdminController extends Controller
             'status' => 'tolak',
         ]);
 
-        return redirect(route('student'));
+        return redirect()->route('indexAdmin');
     }
 
     public function showStudent($nisn) {

@@ -68,7 +68,7 @@
               <li class="menu-header">Menu</li>
               @if (auth()->user()->is_admin == 1)
               <li class="nav-item dropdown">
-                <a href="{{route('student')}}"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+                <a href="{{route('indexAdmin')}}"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
               </li>
               
               <li class="nav-item dropdown">

@@ -103,7 +103,7 @@
             <td colspan="3"><b>A. Akun Anda</b></td>
         </tr>
         <tr>
-            <td colspan="3">Akses<a style="font: blue; text-decoration: none;" href="http://127.0.0.1:8000/login"> ppdb.smkwikrama.sch.id/student</a>, login gunakan</td>
+            <td colspan="3">Akses<a style="font: blue; text-decoration: none;" href="http://127.0.0.1:8000/login"> ppdb.smkwikrama.sch.id/login</a>, login gunakan</td>
         </tr>
         <tr>
             <td colspan="3">Username : {{ $data->email }}</td>

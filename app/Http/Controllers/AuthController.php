@@ -22,9 +22,9 @@ class AuthController extends Controller
             $request->session()->regenerate();
             
             if(Auth::user()->is_admin == 1) {
-                return redirect()->intended('dashboard');
+                return redirect()->intended('/dashboard/admin');
             } else {
-                return redirect()->intended('dashboard/student');
+                return redirect()->intended('/dashboard/student');
             }
         }
 
