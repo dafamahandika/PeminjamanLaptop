@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('asal_sekolah');
             $table->char('no_phone');
+            $table->char('no_ibu');
+            $table->char('no_ayah');
             $table->string('referensi');
             $table->string('status')->nullable();
             $table->string('validator')->nullable();

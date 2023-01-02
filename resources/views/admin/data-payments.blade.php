@@ -51,7 +51,10 @@ Admin | Data Payments
                         <form action="{{ route('validationPayment', ['nisn' => $payment->nisn]) }}" method="post">
                             @csrf
                             <button  class="btn btn-success mr-1">Validasi</i></button>
-                            <a href="{{ route('rejectPayment', ['nisn' => $payment->nisn]) }}" class="btn btn-danger mr-1">Tolak</i></a>
+                            <form action="{{ route('rejectPayment', ['nisn' => $payment->nisn]) }}" method="post">
+                            @csrf 
+                            <button class="btn btn-danger mr-1">Tolak</i></a>
+                            </form>
                         </form>
                     @endif
                     

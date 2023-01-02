@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('nominal');
             $table->string('nama_bank');
             $table->string('bukti_payment');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

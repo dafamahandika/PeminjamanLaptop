@@ -11,7 +11,6 @@ use App\Models\Payment;
 use Illuminate\Support\Facades\Auth; 
 use Hash;
 use Illuminate\Support\Str;
-// use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentController extends Controller
 {
@@ -70,11 +69,7 @@ class StudentController extends Controller
     public function printPdf() {
         $data = Student::latest()->get()->first();
 
-        return view('user.pdf')->with('data', $data);
-
-        // $pdf = Pdf::loadview('user.pdf',['data' => $data])->setpaper('A4', 'potrait');
-        
-        // return $pdf->download('student()->name.pdf'); 
+        return view('user.pdf')->with('data', $data); 
     }
 
     public function createPayment() {

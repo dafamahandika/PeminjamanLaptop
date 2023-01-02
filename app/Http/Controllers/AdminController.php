@@ -17,7 +17,7 @@ class AdminController extends Controller
 {
     public function indexStudent(){
        
-        $data = Student::all();
+        $data = Student::latest()->get();
 
         return view('admin.data-student', compact('data'));
     }
