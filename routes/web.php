@@ -42,7 +42,7 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
      Route::get('/data-sekolah',[AdminController::class, 'indexDataSekolah'])->name('dataSekolah');     
      Route::get('/create-data-sekolah',[AdminController::class, 'createDataSekolah'])->name('createDataSekolah');
      Route::post('/create-data-sekolah',[AdminController::class, 'storeDataSekolah'])->name('storeDataSekolah');
-     Route::get('/delete-data-sekolah/{id}',[AdminController::class, 'deleteDataSekolah'])->name('deleteDataSekolah');
+     Route::get('/delete-data-sekolah/{id}',[AdminController::class, 'd    eleteDataSekolah'])->name('deleteDataSekolah');
      
      Route::get('/bank', [AdminController::class, 'indexDataBank'])->name('indexBank');
      Route::get('/create-bank', [AdminController::class, 'createDataBank'])->name('createDataBank');

@@ -22,7 +22,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             
             if(Auth::user()->is_admin == 1) {
-                return redirect()->intended('/dashboard/admin');
+                return redirect()->route('indexAdmin');
             } else {
                 return redirect()->intended('/dashboard/student');
             }
@@ -33,9 +33,10 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         Auth::logout();
+
         request()->session()->invalidate();
         request()->session()->regenerate();
-
+        
         return redirect()->intended('/login');
     }
 }

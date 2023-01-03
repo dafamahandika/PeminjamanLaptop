@@ -15,10 +15,9 @@ use Illuminate\Support\Str;
 class StudentController extends Controller
 {
     public function indexStudent() {
-        $user = User::all();
-        $student = Student::where('nisn', Auth::user()->password)->first();
+        $student = Student::where('nama', Auth::user()->name)->get('status')->first();
 
-        return view('user.dashboard-user', compact('user', 'student'));
+        return view('user.dashboard-user', compact('student'));
     }
 
     public function indexLanding() {
@@ -45,7 +44,7 @@ class StudentController extends Controller
         
         Student::create([
             'nisn' =>$request->nisn,
-            'nama' =>$request->nama,
+            'nama' =>$request->nama,~~
             'jenis_kelamin' =>$request->jenis_kelamin,
             'email' =>$request->email,
             'asal_sekolah' =>$request->asal_sekolah,

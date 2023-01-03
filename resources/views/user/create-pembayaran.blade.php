@@ -21,9 +21,10 @@ PPDB SMK Wikrama Bogor
       @if ($message = Session::get('fail'))
                <div class="alert alert-danger d-flex justify-content-center" width="15" height="10" role="alert">
                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="danger:"><use xlink:href="#check-circle-fill"/></svg>
-                    <div>
                          {{$message}}
-                    </div>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                  </button>
                </div>
       @endif
       <form method="POST" action="{{ route('storePayment') }}" enctype="multipart/form-data">   

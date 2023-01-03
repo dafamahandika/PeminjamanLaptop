@@ -26,17 +26,47 @@ PPDB SMK Wikrama Bogor
                     </button>
                 </div>
           @endif
-
+          
           @if ($message = Session::get('success'))
-               <div class="alert alert-success d-flex justify-content-center" width="15" height="10" role="alert">
-               <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="success:"><use xlink:href="#check-circle-fill"/></svg>
-                    <div>
-                         {{$message}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+          @endif
+
+          @if ($student->status == 'Pending')
+               <div class="alert alert-info alert-dismissible fade show" role="alert"> 
+                    <div class="texy-center">
+                         <p>Silahkan Lakukan Pembayaran</p>
                     </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-               </div>
+                </div>
+          @endif
+          
+          @if ($student->status == 'Validasi')
+               <div class="alert alert-success alert-dismissible fade show" role="alert"> 
+                    <div class="text-center">
+                         <p>Pembayaran Telah Di Validasi, Silahkan tunggu info selanjutnya</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+          @endif
+          
+          @if ($student->status == 'Tolak')
+               <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+                    <div class="text-center">
+                         <p>Pembayaran Di Tolak, Silahkan Lakukan Pembayaran Kembali</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
           @endif
      </section>
 @endsection
