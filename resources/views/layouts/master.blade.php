@@ -12,7 +12,7 @@
     gtag('config', 'G-00R8F6D0PD');
     </script>
   <title>@yield('title')</title>
-  <link rel="shortcut icon" href="images/logo-wk.png" type="img/x-icon" />
+  <link rel="shortcut icon" href="../images/logo-wk.png" type="img/x-icon" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

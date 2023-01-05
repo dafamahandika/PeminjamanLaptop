@@ -40,7 +40,7 @@ Admin | Data Payments
                     <td>{{$payment->pemilik_rekening}}</td>
                     <td>{{$payment->nominal}}</td>
                     <td>{{$payment->nama_bank}}</td>
-                    <td><a href="/payments/{{ $payment->bukti_payment }}" target="_blank">Lihat</a></td>
+                    <td><a href="/payments/{{ $payment->bukti_payment }}" target="_blak">Lihat</a></td>
                     <td><a href="{{ route('showStudent', ['nisn' => $payment->nisn]) }}">Detail</a></td>
                     <td>
                     @if ($payment->status == 'validasi')
@@ -48,14 +48,18 @@ Admin | Data Payments
                     @elseif($payment->status == 'tolak')
                         <p>Di Tolak</p>
                     @else
+                    <div class="container ">
+                        <div class="row justify-content-center">
                         <form action="{{ route('validationPayment', ['nisn' => $payment->nisn]) }}" method="post">
                             @csrf
                             <button  class="btn btn-success mr-1">Validasi</i></button>
                         </form>
                         <form action="{{ route('rejectPayment', ['nisn' => $payment->nisn]) }}" method="post">
                             @csrf 
-                            <button class="btn btn-danger mr-1">Tolak</i></a>
+                            <button class="btn btn-danger mr-1">Tolak</i></button>
                         </form>
+                        </div>
+                    </div>
                     @endif
                     
                     </td>
