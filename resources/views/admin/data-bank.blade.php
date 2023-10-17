@@ -59,3 +59,11 @@ Admin | Data Bank
 
 
 @endsection
+
+{{-- @section('script')
+<script>
+  $('.sidebar-menu li').click(function() {
+    $(this).toggleClass('active');
+  }); 
+</script>
+@endsection --}}

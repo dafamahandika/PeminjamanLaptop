@@ -54,6 +54,4 @@ Admin | Data Sekolah
     });
 
 </script>
-
-
 @endsection

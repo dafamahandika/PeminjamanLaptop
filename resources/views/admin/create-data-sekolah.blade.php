@@ -48,4 +48,12 @@ Admin | Data Sekolah
     </div>
   </section>
 @endsection
+
+{{-- @section('script')
+<script>
+  $('.sidebar-menu li').click(function() {
+    $(this).toggleClass('active');
+  }); 
+</script>
+@endsection --}}
      

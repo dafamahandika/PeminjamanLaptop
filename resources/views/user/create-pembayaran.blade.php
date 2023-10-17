@@ -27,7 +27,7 @@ PPDB SMK Wikrama Bogor
                   </button>
                </div>
       @endif
-      <form method="POST" action="{{ route('storePayment') }}" enctype="multipart/form-data">   
+      <form method="POST" action="{{ route('storePayment') }}"  ">   
         @csrf
         <div class="row"> 
             <div class="col">
@@ -40,14 +40,14 @@ PPDB SMK Wikrama Bogor
                             <div class="col-sm-12">
                               <div class="form-group mt-3">
                                 <label for="nisn">NISN</label>
-                                <input type="text" name="nisn" class="form-control @error('nisn') is-invalid @enderror" placeholder="00687*****" />
+                                <input type="text" name="nisn" class="form-control     " placeholder="00687*****" />
                                 @error('nisn')
                                   <div class="text-danger">{{ $message }}</div>
                                 @enderror
                               </div>
                                 
                               <label>Nama Bank</label>
-                                <select name="nama_bank"  class="form-control @error('nama_bank') is-invalid @enderror"  required>
+                                <select name="nama_bank"  class="form-select @error('nama_bank') is-invalid @enderror"  required>
                                   <option hidden>Pilih Nama Bank</option> 
                                   @foreach( $data as $dt)
                                   <option value="{{ $dt->nama_bank }}">{{ $dt->nama_bank }}</option>

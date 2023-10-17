@@ -16,20 +16,19 @@ Admin | Data Peserta Didik
     </div>
     <div class="section-body">
         <h3 class="section-title">Daftar Siswa</h3>
-        <table id="data-admin" class="table table-striped table-bordered table-md text-center"
-            style="width: 100%; margin-top:5%; padding:2%;" cellspacing="1">
+        <table class="table table-striped table-bordered table-md text-center" cellspacing="1" id="my-table">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>NISN</th>
-                    <th>Nama</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Email</th>
-                    <th>No. Handphone</th>
-                    <th>Asal Sekolah</th>
-                    <th>Referensi</th>
-                    <th>Validator</th>
-                    <th>Status</th>
+                    <th scope="col">No</th>
+                    <th scope="col">NISN</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Jenis Kelamin</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">No. Handphone</th>
+                    <th scope="col">Asal Sekolah</th>
+                    <th scope="col">Referensi</th>
+                    <th scope="col">Validator</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,14 +60,11 @@ Admin | Data Peserta Didik
         </table>
     </div>
 </section>
-<script src="../../assets/admin/dataTables/js/jquery.dataTables.min.js"></script>
-<script src="../../assets/admin/dataTables/js/dataTables.bootstrap4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#data-admin').DataTable({
-            "iDisplayLength": 25
-        });
-    });
-
-</script>
 @endsection
+{{-- @section('script')
+<script>
+  $('.sidebar-menu li').click(function() {
+    $(this).toggleClass('active');
+  }); 
+</script>
+@endsection --}}

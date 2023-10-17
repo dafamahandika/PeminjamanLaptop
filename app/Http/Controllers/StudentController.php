@@ -42,9 +42,16 @@ class StudentController extends Controller
             'referensi' => 'required',
         ]);
         
+        User::create([
+            'name'  =>$request->nama,
+            'email' =>$request->email,
+            'password' => bcrypt($request->nisn),
+            'is_admin' => 0,
+        ]);
+        
         Student::create([
             'nisn' =>$request->nisn,
-            'nama' =>$request->nama,~~
+            'nama' =>$request->nama,
             'jenis_kelamin' =>$request->jenis_kelamin,
             'email' =>$request->email,
             'asal_sekolah' =>$request->asal_sekolah,
@@ -52,23 +59,17 @@ class StudentController extends Controller
             'no_ibu' =>$request->no_ibu,
             'no_ayah' =>$request->no_ayah,
             'referensi' =>$request->referensi, 
+            'status' => 'Pending', 
         ]);
 
-        User::create([
-            'name'  =>$request->nama,
-            'email' =>$request->email,
-            'password' => Hash::make($request->nisn),
-            'is_admin' => 0,
-        ]);
- 
-        return redirect()->intended('print-pdf');
+        return redirect()->route('printPdf');
 
     }
 
     public function printPdf() {
         $data = Student::latest()->get()->first();
 
-        return view('user.pdf')->with('data', $data); 
+        return view('user.pdf', compact('data')); 
     }
 
     public function createPayment() {
@@ -106,7 +107,7 @@ class StudentController extends Controller
         
         $student_nisn = $request->nisn;
         Student::where('nisn', $student_nisn)->update([
-            'status' => 'Pending'
+            'status' => 'Waiting'
         ]);
 
         

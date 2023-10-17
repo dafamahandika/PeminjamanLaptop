@@ -33,16 +33,16 @@ Route::middleware('guest')->group(function() {
 Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 Route::get('/daftar',[StudentController::class , 'createStudent'])->name('createStudent');
 Route::post('/daftar',[StudentController::class, 'storeDaftar'])->name('storeDaftar');
-Route::get('print-pdf', [StudentController::class, 'printPdf'])->name('printPdf');
+Route::get('/print-pdf', [StudentController::class, 'printPdf'])->name('printPdf');
 
 //Admin
 Route::middleware(['auth', 'is_admin'])->group(function () {
-     Route::get('/dashboard/admin',[AdminController::class, 'indexAdmin'])->name('indexAdmin');
+     Route::get('/dashboard-admin',[AdminController::class, 'indexAdmin'])->name('indexAdmin');
      
      Route::get('/data-sekolah',[AdminController::class, 'indexDataSekolah'])->name('dataSekolah');     
      Route::get('/create-data-sekolah',[AdminController::class, 'createDataSekolah'])->name('createDataSekolah');
      Route::post('/create-data-sekolah',[AdminController::class, 'storeDataSekolah'])->name('storeDataSekolah');
-     Route::get('/delete-data-sekolah/{id}',[AdminController::class, 'd    eleteDataSekolah'])->name('deleteDataSekolah');
+     Route::get('/delete-data-sekolah/{id}',[AdminController::class, 'deleteDataSekolah'])->name('deleteDataSekolah');
      
      Route::get('/bank', [AdminController::class, 'indexDataBank'])->name('indexBank');
      Route::get('/create-bank', [AdminController::class, 'createDataBank'])->name('createDataBank');

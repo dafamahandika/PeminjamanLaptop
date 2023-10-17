@@ -47,6 +47,17 @@ PPDB SMK Wikrama Bogor
                 </div>
           @endif
           
+          @if ($student->status == 'Waiting')
+               <div class="alert alert-info alert-dismissible fade show" role="alert"> 
+                    <div class="texy-center">
+                         <p>Silahkan Tunggu Validasi</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+          @endif
+          
           @if ($student->status == 'Validasi')
                <div class="alert alert-success alert-dismissible fade show" role="alert"> 
                     <div class="text-center">

@@ -13,9 +13,7 @@ Admin | Data Payments
     </div>
 
     <div class="section-body">
-      <form method="POST" action="{{ route('storePayment') }}" enctype="multipart/form-data">   
-        @csrf
-        <div class="row"> 
+      <div class="row"> 
             <div class="col">
                 <div class="card">
                     <div class="card-header">
@@ -35,9 +33,16 @@ Admin | Data Payments
                          <li>Referensi : {{ $student->referensi }}</li>
                     </ul>
                 </div>
-            </div>
-        </div>
-    </form>
+          </div>
+      </div>
     </div>
   </section>
 @endsection
+
+{{-- @section('script')
+<script>
+  $('.sidebar-menu li').click(function() {
+    $(this).toggleClass('active');
+  }); 
+</script>
+@endsection --}}

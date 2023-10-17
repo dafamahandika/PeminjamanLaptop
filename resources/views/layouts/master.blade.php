@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="../../../assets/admin/css/components.css">
   <link rel="stylesheet" href="../../../assets/admin/css/progres.css">
   <link rel="stylesheet" href="../../../assets/admin/css/card.css">
-
-  <!-- <link href="" rel='shortcut icon'> -->
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/af-2.5.1/b-2.3.3/b-html5-2.3.3/b-print-2.3.3/date-1.2.0/r-2.4.0/datatables.min.css"/>
 
 </head>
 
@@ -67,30 +67,30 @@
           <ul class="sidebar-menu">
               <li class="menu-header">Menu</li>
               @if (auth()->user()->is_admin == 1)
-              <li class="nav-item dropdown">
-                <a href="{{route('indexAdmin')}}"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+              <li class="nav-item dropdown" id="nav-link">
+                <a href="{{route('indexAdmin')}}" class=""><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
               </li>
               
-              <li class="nav-item dropdown">
-                <a href="{{route('dataSekolah')}}"><i class="fa-solid fa-school"></i><span>Data Asal Sekolah</span></a>
+              <li class="nav-item dropdown" id="nav-link">
+                <a href="{{route('dataSekolah')}}" class=""><i class="fa-solid fa-school"></i><span>Data Asal Sekolah</span></a>
               </li>
               
-              <li class="nav-item dropdown">
-                <a href="{{route('indexBank')}}"><i class="fa-solid fa-building-columns"></i><span>Data Bank</span></a>
+              <li class="nav-item dropdown" id="nav-link">
+                <a href="{{route('indexBank')}}" class=""><i class="fa-solid fa-building-columns"></i><span>Data Bank</span></a>
               </li>
         
-              <li class="nav-item dropdown">
-                <a href="{{ route('payments') }}"><i class="fa-solid fa-users"></i><span>Data Payment</span></a>
+              <li class="nav-item dropdown" id="nav-link">
+                <a href="{{ route('payments') }}" class=""><i class="fa-solid fa-users"></i><span>Data Payment</span></a>
               </li>
               @endif
 
               @if (auth()->user()->is_admin !== 1)
               <li class="nav-item dropdown">
-                <a href="{{ route('indexStudent') }}"><i class="fa-solid fa-user"></i><span>Dasboard</span></a>
+                <a href="{{ route('indexStudent') }}" class=""><i class="fa-solid fa-user"></i><span>Dasboard</span></a>
               </li>
               
-              <li class="nav-item dropdown">
-                <a href="{{ route('payment') }}"><i class="fa-solid fa-money-bill"></i><span>Pembayaran</span></a>
+              <li class="nav-item dropdown" id="nav-link">
+                <a href="{{ route('payment') }}" class=""><i class="fa-solid fa-money-bill"></i><span>Pembayaran</span></a>
               </li>
               @endif  
             </ul>
@@ -104,7 +104,6 @@
       </div>
       </section>
       </div>
-      <footer class="main-footer">
         <div class="footer-left">
           Copyright &copy; 2022 <div class="bullet"><a>PPLG SMK Wikrama Bogor</a></div>
         </div>
@@ -113,23 +112,32 @@
   </div>
   <script src="https://kit.fontawesome.com/2779d159af.js" crossorigin="anonymous"></script>
   <!-- General JS Scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="{{ url('assets/admin/js/stisla.js')}}"></script>
-
-  <!-- JS Libraies -->
-  {{-- <script src="{{ url('assets/admin/node_modules/jquery-sparkline/jquery.sparkline.min.js')}}"></script> --}}
-  {{-- <script src="{{ url('assets/admin/node_modules/chart.js/dist/Chart.min.js')}}"></script> --}}
-  {{-- <script src="{{ url('assets/admin/node_modules/owl.carousel/dist/owl.carousel.min.js')}}"></script> --}}
-  {{-- <script src="{{ url('assets/admin/node_modules/summernote/dist/summernote-bs4.js')}}"></script>
-  <script src="{{ url('assets/admin/node_modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script> --}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/sc-2.0.6/datatables.min.js"></script> --}}
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready( function () {
+      $('#my-table').DataTable();
+      } );
+  </script>
+  {{-- @yield('script') --}}
+  {{-- <!-- JS Libraies  --}}
+  <script src="{{ url('assets/admin/node_modules/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+  <script src="{{ url('assets/admin/node_modules/chart.js/dist/Chart.min.js')}}"></script> 
+  <script src="{{ url('assets/admin/node_modules/owl.carousel/dist/owl.carousel.min.js')}}"></script> 
+  <script src="{{ url('assets/admin/node_modules/summernote/dist/summernote-bs4.js')}}"></script>
+  <script src="{{ url('assets/admin/node_modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
   <!-- Template JS File -->
   <script src="{{ url('assets/admin/js/scripts.js')}}"></script>
+  <script src="{{ url('assets/admin/js/main.js')}}"></script>
   <script src="{{ url('assets/admin/js/custom.js')}}"></script>
   <script src="{{ url('assets/admin/js/newCustom.js')}}"></script>
 @yield('asset_footer')

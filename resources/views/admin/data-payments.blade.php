@@ -16,8 +16,7 @@ Admin | Data Payments
     </div>
     <div class="section-body">
         <h3 class="section-title">Daftar Student Payments</h3>
-        <table id="data-admin" class="table table-striped table-bordered table-md text-center"
-            style="width: 100%; margin-top:5%; padding:2%;" cellspacing="1">
+        <table id="my-table" class="table table-striped table-bordered table-md text-center" cellspacing="1">
             <thead>
                 <tr>
                     <th>No</th>
@@ -38,9 +37,9 @@ Admin | Data Payments
                     <td>{{$i++}}</td>
                     <td>{{$payment->student_id}}</td>
                     <td>{{$payment->pemilik_rekening}}</td>
-                    <td>{{$payment->nominal}}</td>
+                    <td>{{'Rp.'. number_format($payment->nominal,2,',','.')}}</td>
                     <td>{{$payment->nama_bank}}</td>
-                    <td><a href="/payments/{{ $payment->bukti_payment }}" target="_blak">Lihat</a></td>
+                    <td><a href="/payments/{{ $payment->bukti_payment }}" target="_blank">Lihat</a></td>
                     <td><a href="{{ route('showStudent', ['nisn' => $payment->nisn]) }}">Detail</a></td>
                     <td>
                     @if ($payment->status == 'validasi')
@@ -71,16 +70,4 @@ Admin | Data Payments
         </table>
     </div>
 </section>
-<script src="../../assets/admin/dataTables/js/jquery.dataTables.min.js"></script>
-<script src="../../assets/admin/dataTables/js/dataTables.bootstrap4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#data-admin').DataTable({
-            "iDisplayLength": 25
-        });
-    });
-
-</script>
-
-
 @endsection

@@ -22,6 +22,7 @@ class Student extends Authenticatable
         'no_ibu',
         'no_ayah',
         'referensi',
+        'status',
 
     ];
 
