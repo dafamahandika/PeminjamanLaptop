@@ -16,6 +16,9 @@ Admin | Data Peserta Didik
     </div>
     <div class="section-body">
         <h3 class="section-title">Daftar Siswa</h3>
+        <h6>Total Siswa = {{ $total }}</h6>
+        <h6>Laki-laki = {{ $male }}</h6>
+        <h6>Perempuan = {{ $female }}</h6>
         <table class="table table-striped table-bordered table-md text-center" cellspacing="1" id="my-table">
             <thead>
                 <tr>

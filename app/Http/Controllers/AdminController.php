@@ -18,8 +18,11 @@ class AdminController extends Controller
     public function indexAdmin(){
        
         $data = Student::latest()->get();
+        $total = $data->count();
+        $female = Student::where("jenis_kelamin", "Perempuan")->count();
+        $male = Student::where("jenis_kelamin", "Laki-laki")->count();
 
-        return view('admin.data-student', compact('data'));
+        return view('admin.data-student', compact(['data', 'total', 'female', 'male']));
     }
 
     public function indexDataSekolah(){

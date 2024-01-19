@@ -27,7 +27,7 @@ PPDB SMK Wikrama Bogor
                   </button>
                </div>
       @endif
-      <form method="POST" action="{{ route('storePayment') }}"  ">   
+      <form method="POST" action="{{ route('storePayment') }}">   
         @csrf
         <div class="row"> 
             <div class="col">
@@ -40,7 +40,7 @@ PPDB SMK Wikrama Bogor
                             <div class="col-sm-12">
                               <div class="form-group mt-3">
                                 <label for="nisn">NISN</label>
-                                <input type="text" name="nisn" class="form-control     " placeholder="00687*****" />
+                                <input type="text" name="nisn" class="form-control" placeholder="00687*****" />
                                 @error('nisn')
                                   <div class="text-danger">{{ $message }}</div>
                                 @enderror

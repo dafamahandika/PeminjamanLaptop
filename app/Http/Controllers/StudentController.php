@@ -75,11 +75,10 @@ class StudentController extends Controller
     public function createPayment() {
         $data = Bank::all();
 
-        return view('user.create-pembayaran', compact('data'));
+        return view('user.create-pembayaran', compact('data')); 
     }
 
     public function storePayment(Request $request) {
-        $student = Student::where('nama', auth()->user()->name)->get()->first();
         $request->validate([
             'nisn' => 'required|numeric|unique:payment',
             'bukti_payment' => 'required|mimes:jpg,png,jpeg,|image|max:2048',
@@ -94,11 +93,11 @@ class StudentController extends Controller
             $bukti->move(public_path('payments'), $name_bukti);
         } else {
             return back()->with('fail', 'Sertakan Bukti Pembayaran');
-        }
-        
+        } 
+
         $payment = new Payment;
         $payment->nisn= $request->nisn;
-        $payment->student_id = $student->id;
+        $payment->student_id = auth()->user()->id;
         $payment->pemilik_rekening = $request->pemilik_rekening;
         $payment->nominal = $request->nominal;
         $payment->nama_bank = $request->nama_bank;
